@@ -3,7 +3,6 @@ package workload
 import (
 	"log"
 
-	"github.com/onsi/ginkgo/v2"
 	"github.com/onsi/gomega"
 
 	"github.com/daocloud/kpanda/test/tools"
@@ -37,10 +36,16 @@ var _ = ginkgo.Describe("Api e2e test - ListClusterSecrets", func() {
 			gomega.Expect(responseInfo.Payload.Pagination.Total == 0).To(gomega.Equal(true))
 		})
 		ginkgo.It("Query secrets info with wrong cluster", func() {
-			responseInfo, err := client.ListClusterSecrets("errorcluster", tools.KpandaNameSpace)
+			responseInfo, err := client.ListClusterSecrets("errorcluster11", tools.KpandaNameSpace)
 			tools.CheckErr(err)
+			if err {
+				log.Fatal("No data is queried")
+			}
 			gomega.Expect(len(responseInfo.Payload.Secrets) == 0).To(gomega.Equal(true))
 			gomega.Expect(responseInfo.Payload.Pagination.Total == 0).To(gomega.Equal(true))
+		})
+		ginkgo.It("Query secrets info with wrong cluster", func() {
+			log.Fatal("No data is queried")
 		})
 	})
 })
