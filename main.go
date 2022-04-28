@@ -36,11 +36,15 @@ var _ = ginkgo.Describe("Api e2e test - ListClusterSecrets", func() {
 			gomega.Expect(len(responseInfo.Payload.Secrets) == 0).To(gomega.Equal(true))
 			gomega.Expect(responseInfo.Payload.Pagination.Total == 0).To(gomega.Equal(true))
 		})
-		ginkgo.It("Query secrets info with wrong cluster", func() {
+		ginkgo.It("Query secrets info with wrong", func() {
 			responseInfo, err := client.ListClusterSecrets("errorcluster", tools.KpandaNameSpace)
-			tools.CheckErr(err)
-			gomega.Expect(len(responseInfo.Payload.Secrets) == 0).To(gomega.Equal(true))
+			log.Fatal("No data is queried")
+			gomega.Expect(len(responseInfo.Payload.Secrets) == 12).To(gomega.Equal(true))
 			gomega.Expect(responseInfo.Payload.Pagination.Total == 0).To(gomega.Equal(true))
 		})
+		for i:=1;i<5;i++{
+			log.Fatal("No data is queried")
+			log.Fatal("No data is queried")
+		}
 	})
 })
